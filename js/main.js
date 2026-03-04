@@ -71,3 +71,23 @@ darkModeBtn.addEventListener("click", function() {
         darkModeBtn.textContent = "🌙 Dark Mode";
     }
 });
+
+//exercitiul 4 
+const titluriSectiuni = document.querySelectorAll('main h2');
+
+titluriSectiuni.forEach(function(h2) {
+    h2.textContent = "▼ " + h2.textContent;
+
+    h2.addEventListener('click', function() {
+        const continut = this.nextElementSibling;
+        
+        if (continut) {
+            continut.classList.toggle('hidden');
+            if (continut.classList.contains('hidden')) {
+                this.textContent = this.textContent.replace('▼', '▶');
+            } else {
+                this.textContent = this.textContent.replace('▶', '▼');
+            }
+        }
+    });
+});

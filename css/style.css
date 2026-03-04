@@ -140,3 +140,12 @@ body.dark-mode textarea {
     color: white;
     border-color: #2c3e50;
 }
+
+.hidden {
+    display: none;
+}
+
+main h2 {
+    cursor: pointer;
+    user-select: none;
+}
