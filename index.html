@@ -9,8 +9,9 @@
 <body>
     <header>
         <h1>Andreea Stefan</h1>
-        <p>Studenta la IESC-CalculatoareS</p>
+        <p>Studenta la IESC-Calculatoare</p>
     </header>
+
     <nav>
         <ul>
             <li><a href="#about">Despre mine</a></li>
@@ -24,15 +25,14 @@
             <img src="images/profil.jpg" alt="Selfie" loading="lazy" width="200">
             <p>
                 Sunt pasionata de tehnologie si programare, dornica sa invat cele mai noi 
-                tehnologii web. In timpul liber, imi place sa explorez arhitecturi software 
-            
+                tehnologii web. In timpul liber, imi place sa explorez arhitecturi software.
             </p>
         </section>
 
         <section id="education">
             <h2>Educatie</h2>
             <ol>
-                <li>Studenta la Inginerie Electrica si Calculatoare(2023 - prezent)</li>
+                <li>Studenta la Inginerie Electrica si Calculatoare (2023 - prezent)</li>
                 <li>Bacalaureat - Liceul Tehnologic Virgil Madgearu (2019 - 2023)</li>
             </ol>
         </section>
@@ -50,30 +50,31 @@
 
     <footer>
         <section id="contact">
-        <h2>Nu ma contacta</h2>
-        <form action="#" method="post">
-            <div class="form-group">
-                <label for="nume">Nume complet:</label>
-                <input type="text" id="nume" name="nume" autocomplete="name">
-            </div>
+            <h2>Contact</h2>
+            <form id="contact-form">
+                <div class="form-group">
+                    <label for="nume">Nume complet:</label>
+                    <input type="text" id="nume" name="nume" autocomplete="name">
+                </div>
 
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" autocomplete="email" required>
-            </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" autocomplete="email">
+                </div>
 
-            <div class="form-group">
-                <label for="mesaj">Mesaj:</label>
-                <textarea id="mesaj" name="mesaj" required minlength="10" rows="4"></textarea>
-            </div>
+                <div class="form-group">
+                    <label for="mesaj">Mesaj:</label>
+                    <textarea id="mesaj" name="mesaj" rows="4"></textarea>
+                </div>
 
-            <button type="submit" onclick="submitForm()">Trimite Mesajul</button>
-        </form>
-    </section>
+                <button type="submit">Trimite Mesajul</button>
+                
+                <p id="form-feedback" style="margin-top: 15px; font-weight: bold;"></p>
+            </form>
+        </section>
         <p>&copy; 2026 Andreea Stefan. Contact: angela.stefan@student.unitbv.ro</p>
     </footer>
-    
 
-<script src="js/contact_form.js"></script>
+    <script src="js/main.js" defer></script>
 </body>
 </html>
