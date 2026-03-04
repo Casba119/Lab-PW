@@ -1,11 +1,12 @@
-// Exercițiul 1
+//Exercițiul 1
 function afiseazaSalut() {
     const dataCurenta = new Date();
     const ora = dataCurenta.getHours();
     const paragrafHeader = document.querySelector('header p');
     
-    let mesaj;
+    if (!paragrafHeader) return;
 
+    let mesaj;
     if (ora >= 6 && ora < 12) {
         mesaj = "Bună dimineața! Bine ai venit pe pagina mea.";
     } else if (ora >= 12 && ora < 18) {
@@ -14,20 +15,46 @@ function afiseazaSalut() {
         mesaj = "Bună seara! Bine ai venit pe pagina mea.";
     }
 
-    
     paragrafHeader.textContent = mesaj;
 }
-
 
 afiseazaSalut();
 
 
-function submitForm() {
-    const nume = document.getElementById("nume").value;
-    const email = document.getElementById("email").value;
-    const mesaj = document.getElementById("mesaj").value;
+//Exercițiul 2
+const contactForm = document.getElementById("contact-form");
+const feedback = document.getElementById("form-feedback");
 
-    console.log("Nume introdus:", nume);
-    console.log("Email introdus:", email);
-    console.log("Mesaj introdus:", mesaj);
-}
+contactForm.addEventListener("submit", function(event) {
+    
+    event.preventDefault();
+
+    const nume = document.getElementById("nume").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const mesaj = document.getElementById("mesaj").value.trim();
+
+    feedback.textContent = "";
+
+    if (nume.length < 2) {
+        feedback.textContent = "Nume prea scurt!";
+        feedback.style.color = "red";
+        return;
+    }
+
+    if (!email.includes("@")) {
+        feedback.textContent = "Email invalid! Lipsește simbolul @.";
+        feedback.style.color = "red";
+        return;
+    }
+
+    if (mesaj.length < 10) {
+        feedback.textContent = "Mesajul trebuie să aibă cel puțin 10 caractere!";
+        feedback.style.color = "red";
+        return;
+    }
+
+    feedback.textContent = `Mulțumim, ${nume}! Mesajul a fost trimis.`;
+    feedback.style.color = "green";
+
+    contactForm.reset();
+});
