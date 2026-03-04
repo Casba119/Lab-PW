@@ -118,3 +118,25 @@ input:invalid:focus {
     border-color: #e74c3c;
     outline: none;
 }
+
+/*pt dark mode */
+body.dark-mode {
+    --background-color: #1a1a2e; 
+    --text-color: #e0e0e0;       
+    --white: #16213e;            
+}
+
+body.dark-mode header, 
+body.dark-mode section, 
+body.dark-mode footer, 
+body.dark-mode aside {
+    background: var(--white);
+    border: 1px solid #2c3e50;
+}
+
+body.dark-mode input, 
+body.dark-mode textarea {
+    background-color: #0f3460;
+    color: white;
+    border-color: #2c3e50;
+}
