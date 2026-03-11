@@ -1,83 +1,13 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/style.css">
-    <title>Prezentare personala</title>
-</head>
-<body>
-    <header>
-        <h1>Andreea Stefan</h1>
-        <p>Studenta la IESC-Calculatoare</p>
-    </header>
-
-    <nav>
-        <ul>
-            <li><a href="#about">Despre mine</a></li>
-            <li><a href="#education">Educatie</a></li>
-            <li id="dark-mode-toggle" style="cursor: pointer; background: var(--secondary-color); color: white; padding: 8px 16px; border-radius: 5px; margin-left: 15px;">
-            🌙 Dark Mode
-        </ul>
-    </nav>
-
-    <main>
-        <section id="about">
-            <h2>Despre mine</h2>
-            </div><img src="images/profil.jpg" alt="Selfie" loading="lazy" width="200">
-            <p>
-                Sunt pasionata de tehnologie si programare, dornica sa invat cele mai noi 
-                tehnologii web. In timpul liber, imi place sa explorez arhitecturi software.
-            </p>
-        </section>
-
-        <section id="education">
-            <h2>Educatie</h2>
-            <ol>
-                <li>Studenta la Inginerie Electrica si Calculatoare (2023 - prezent)</li>
-                <li>Bacalaureat - Liceul Tehnologic Virgil Madgearu (2019 - 2023)</li>
-            </ol>
-        </section>
-    </main>
-
-    <aside>
-        <h3>Hobby-uri & Interese</h3>
-        <ul>
-            <li>Cititul</li>
-            <li>Hiking</li>
-            <li>Tech</li>
-        </ul>
-        <blockquote>"Codul este ca somnul meu, trebuie sa fie scurt si expresiv."</blockquote>
-    </aside>
-
-    <footer>
-        <section id="contact">
-            <h2>Contact</h2>
-            <form id="contact-form">
-                <div class="form-group">
-                    <label for="nume">Nume complet:</label>
-                    <input type="text" id="nume" name="nume" autocomplete="name">
-                </div>
-
-                <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" autocomplete="email">
-                </div>
-
-                <div class="form-group">
-                    <label for="mesaj">Mesaj:</label>
-                    <textarea id="mesaj" name="mesaj" rows="4"></textarea>
-                </div>
-
-                <button type="submit">Trimite Mesajul</button>
-                
-                <p id="form-feedback" style="margin-top: 15px; font-weight: bold;"></p>
-            </form>
-        </section>
-        <p>&copy; 2026 Andreea Stefan. Contact: angela.stefan@student.unitbv.ro</p>
-    </footer>
-
-    <script src="js/main.js" defer></script>
-    <script src="js/array.js" defer></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>vs-code</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>
