@@ -15,15 +15,15 @@ function App() {
 
   return (
     <div style={{ padding: '20px', textAlign: 'center' }}>
-      <h1>Interactivitate în React</h1>
+      <h1>Interactivitate in React</h1>
 
   
-      <div style={{ margin: '20px', padding: '10px', background: '#eee' }}>
-        <p>Butonul a fost apăsat de <strong>{count}</strong> ori</p>
+      <div style={{ margin: '20px', padding: '10px', background: '#5e5e5e' }}>
+        <p>Butonul a fost apasat de <strong>{count}</strong> ori</p>
         
     
         <button onClick={() => setCount(count + 1)}>
-          Apasă-mă!
+          Apasaaa!
         </button>
       </div>
 
