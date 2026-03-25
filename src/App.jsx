@@ -1,6 +1,7 @@
 import { useState } from 'react'; 
 import Card from './Card';
 import QuickNote from './QuickNote'; 
+import TodoList from './TodoList';
 
 function App() {
   
@@ -36,6 +37,7 @@ function App() {
         ))}
       </div>
       <QuickNote />
+      <TodoList />
     </div>
   );
 }
