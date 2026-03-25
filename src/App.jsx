@@ -1,5 +1,6 @@
 import { useState } from 'react'; 
 import Card from './Card';
+import QuickNote from './QuickNote'; 
 
 function App() {
   
@@ -34,6 +35,7 @@ function App() {
           <Card key={index} title={item.title} description={item.description} />
         ))}
       </div>
+      <QuickNote />
     </div>
   );
 }
