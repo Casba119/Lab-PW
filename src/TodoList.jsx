@@ -4,10 +4,18 @@ function TodoList() {
     const [todos, setTodos] = useState([]);
     const [input, setInput] = useState('');
 
+
     function handleAdd() {
-        if (input.trim() === '') return;   // Nu adauga text gol
-        setTodos([...todos, input]);       // Creeaza array NOU cu tot ce era + input
-        setInput('');                      // Goleste input-ul
+        if (input.trim() === '') return;    // Nu adauga text gol 
+        setTodos([...todos, input]);        // Creeaza array NOU cu tot ce era + input 
+        setInput('');                       // Goleste input-ul 
+    }
+
+    // Functia pentru stergere
+    function handleDelete(index) {
+        setTodos(todos.filter(function(_, i) {
+            return i !== index;
+        }));
     }
 
     return (
@@ -20,10 +28,15 @@ function TodoList() {
             />
             <button onClick={handleAdd}>Adauga</button>
 
-            {/* Afișarea listei de todos cu map() */}
             <ul>
                 {todos.map(function(todo, index) {
-                    return <li key={index}>{todo}</li>;
+                    return (
+                        <li key={index}>
+                            {todo} 
+                            {" "} 
+                            <button onClick={() => handleDelete(index)}>Sterge</button>
+                        </li>
+                    );
                 })}
             </ul>
         </div>
