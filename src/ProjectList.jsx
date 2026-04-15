@@ -3,17 +3,32 @@ import { useState, useEffect } from 'react';
 function ProjectList() {
     const [projects, setProjects] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(function() {
         fetch('/data/projects.json')
             .then(function(response) {
+                if (!response.ok) {
+                    throw new Error('Eroare : ' + response.status);
+                }
                 return response.json();
             })
             .then(function(data) {
                 setProjects(data.projects);
                 setLoading(false);
-            });
-    }, []);
+            })
+            .catch(function(err) { 
+                console.log("EROAREAAA: " , err);
+                setError('Eroare la incarcarea datelor'); 
+                setLoading(false); 
+            })
+    }, 
+    []);
+
+    //afisare eroare
+    if (error) {
+        return <p style={{ color: 'red', fontWeight: 'bold' }}>{error}</p>;
+    }
 
     if (loading) {
         return <p>Se incarca...</p>;

@@ -40,7 +40,7 @@ function App() {
       <QuickNote />
       <TodoList />
 
-      {/* <ProjectList /> */}
+      <ProjectList />
 
       <QuickNote />
       <TodoList />
