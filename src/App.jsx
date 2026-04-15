@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Card from './Card';
 import QuickNote from './QuickNote'; 
 import TodoList from './TodoList';
+import ProjectList from './ProjectList';
 
 function App() {
   
@@ -36,6 +37,11 @@ function App() {
           <Card key={index} title={item.title} description={item.description} />
         ))}
       </div>
+      <QuickNote />
+      <TodoList />
+
+      {/* <ProjectList /> */}
+
       <QuickNote />
       <TodoList />
     </div>
