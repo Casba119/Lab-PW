@@ -4,6 +4,7 @@ function ProjectList() {
     const [projects, setProjects] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [searchTerm, setSearchTerm] = useState('');
 
     useEffect(function() {
         fetch('/data/projects.json')
@@ -38,7 +39,18 @@ function ProjectList() {
         <div>
             <h3>Proiecte</h3>
             {/* TODO: Afisati proiectele cu map() si componenta Card din Lab 4 */}
-            {projects.map(function(project) {
+            <input 
+                type="text" 
+                placeholder="Cauta proiect..." 
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                style={{ marginBottom: '20px', padding: '5px' }}
+            />
+            {projects
+    .filter(function(p) {
+        return p.title.toLowerCase().includes(searchTerm.toLowerCase());
+    })
+            .map(function(project) {
                 return (
                     <div key={project.id} style={{ border: '1px solid #ccc', margin: '10px', padding: '10px' }}>
                         <h4>{project.title}</h4>
