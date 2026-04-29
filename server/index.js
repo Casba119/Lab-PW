@@ -9,6 +9,30 @@ const projects = [
     { id: 4, title: "API Meteo", tech: "React, API", done: false },
 ];
 
+// GET /api/projects/:id 
+app.get('/api/projects/:id', (req, res) => {
+    const project = projects.find(p => p.id === parseInt(req.params.id));
+    
+    if (!project) {
+        return res.status(404).json({ error: 'Not found' });
+    }
+    
+    res.json(project);
+});
+
+// GET /api/stats 
+app.get('/api/stats', (req, res) => {
+    const total = projects.length;
+    const done = projects.filter(p => p.done === true).length;
+    const inProgress = projects.filter(p => p.done === false).length;
+
+    res.json({
+        totalProjects: total,
+        completedProjects: done,
+        inProgressProjects: inProgress
+    });
+});
+
 // Prima ruta: raspunde la GET /
 app.get('/', function(req, res) {
   res.json({ message: 'Serverul funcționează!' });
