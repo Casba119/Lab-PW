@@ -2,6 +2,8 @@ const express = require('express');
 const app = express();
 const PORT = 3000;
 
+app.use(express.json());
+
 const projects = [
     { id: 1, title: "Pagina Personală", tech: "HTML, CSS", done: true },
     { id: 2, title: "Calculator Buget", tech: "JS", done: true },
@@ -41,6 +43,18 @@ app.get('/', function(req, res) {
 // GET /api/projects - returnează toate proiectele
 app.get('/api/projects', function(req, res) {
     res.json(projects);
+});
+
+// POST /api/projects - adauga un proiect nou
+app.post('/api/projects', function(req, res) {
+     const newProject = {
+         id: projects.length + 1,
+         title: req.body.title,
+         tech: req.body.tech,
+         done: req.body.done || false,
+     };
+     projects.push(newProject);
+     res.status(201).json(newProject);
 });
 
 // Porneste serverul
