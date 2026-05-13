@@ -46,6 +46,25 @@ function ProjectList() {
     } 
 }
 
+
+async function handleDelete(id) {
+    if (!window.confirm("Sigur vrei sa stergi acest proiect?")) return;
+
+    try {
+        const response = await fetch('http://localhost:3000/api/projects/' + id, {
+            method: 'DELETE',
+        });
+
+        if (!response.ok) {
+            throw new Error('Eroare la stergere');
+        }
+        setProjects(projects.filter(p => p._id !== id));
+    } catch (err) {
+        console.error('Eroare:', err);
+        alert("Nu s-a putut sterge proiectul");
+    }
+}
+
     //afisare eroare
     if (error) {
         return <p style={{ color: 'red', fontWeight: 'bold' }}>{error}</p>;
@@ -97,6 +116,22 @@ function ProjectList() {
                         <h4>{project.title}</h4>
                         <p>Tehnologii: {project.tech}</p>
                         <p>Status: {project.done ? "finalizat" : "nu inca"}</p>
+
+                        {/* Butonul de stergere */}
+                <button 
+                    onClick={() => handleDelete(project._id)}
+                    style={{ 
+                        backgroundColor: '#ff4d4d', 
+                        color: 'white', 
+                        border: 'none', 
+                        padding: '5px 10px', 
+                        cursor: 'pointer',
+                        borderRadius: '4px',
+                        marginTop: '5px'
+                    }}
+                >
+                    Sterge
+                </button>
                     </div>)
                 })}
         </div>
