@@ -17,7 +17,7 @@ function ProjectList() {
     const [editTech, setEditTech] = useState('');
 
     useEffect(function() {
-        fetch('http://localhost:3000/api/projects')
+        fetch(`${API}/api/projects`)
             .then(function(response) {
                 if (!response.ok) {
                     throw new Error('Eroare : ' + response.status);
@@ -39,7 +39,7 @@ function ProjectList() {
     async function handleSubmit(e) { 
     e.preventDefault(); 
     try { 
-        const response = await fetch('http://localhost:3000/api/projects', { 
+        const response = await fetch(`${API}/api/projects`, { 
             method: 'POST', 
             headers: { 'Content-Type': 'application/json' }, 
             body: JSON.stringify({ title: title, tech: tech }), 
@@ -58,7 +58,7 @@ async function handleDelete(id) {
     if (!window.confirm("Sigur vrei sa stergi acest proiect?")) return;
 
     try {
-        const response = await fetch('http://localhost:3000/api/projects/' + id, {
+        const response = await fetch(`${API}/api/projects/${id}` , {
             method: 'DELETE',
         });
 
@@ -75,7 +75,7 @@ async function handleDelete(id) {
     //lab11 ex1 async toggle
     async function handleToggle(id, currentDone) {
         try {
-            const response = await fetch('http://localhost:3000/api/projects/' + id, {
+            const response = await fetch(`${API}/api/projects/${id}` , {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ done: !currentDone })  
@@ -109,7 +109,7 @@ function cancelEdit() {
 // Salveaza
 async function handleSaveEdit(id, currentDone) {
     try {
-        const response = await fetch('http://localhost:3000/api/projects/' + id, {
+        const response = await fetch(`${API}/api/projects/${id}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ title: editTitle, tech: editTech, done: currentDone })
