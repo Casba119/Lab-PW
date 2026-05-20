@@ -43,7 +43,7 @@ function ProjectList() {
         }); 
         const newProject = await response.json(); 
         setProjects([...projects, newProject]); 
-        setTitle('');  // Goleste input-urile 
+        setTitle('');   
         setTech(''); 
     } catch (err) { 
         console.error('Eroare:', err); 
@@ -75,7 +75,7 @@ async function handleDelete(id) {
             const response = await fetch('http://localhost:3000/api/projects/' + id, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ done: !currentDone }) // Inversăm statusul curent
+                body: JSON.stringify({ done: !currentDone })  
             });
 
             if (!response.ok) {
@@ -83,7 +83,6 @@ async function handleDelete(id) {
             }
 
             const updatedProject = await response.json();
-            // Înlocuim proiectul vechi cu cel nou în state
             setProjects(projects.map(p => p._id === id ? updatedProject : p));
         } catch (err) {
             console.error('Eroare la toggle:', err);

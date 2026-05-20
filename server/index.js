@@ -125,6 +125,24 @@ app.delete('/api/projects/:id', async function(req, res) {
     }
 });
 
+
+// GET /api/stats - returneaza statistici live din baza de date
+app.get('/api/stats', async function(req, res) {
+    try {
+        const total = await Project.countDocuments();
+        const done = await Project.countDocuments({ done: true });
+        
+        res.json({ 
+            total: total, 
+            done: done, 
+            inProgress: total - done 
+        });
+    } catch (err) {
+        res.status(500).json({ error: 'Eroare server: ' + err.message });
+    }
+});
+
+
 // Porneste serverul
 app.listen(PORT, function() {
   console.log('Server pornit pe http://localhost:' + PORT);
