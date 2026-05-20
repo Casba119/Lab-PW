@@ -1,19 +1,23 @@
+require('dotenv').config();
+const dns = require('dns');
+dns.setServers(['8.8.8.8', '8.8.4.4']);
+dns.setDefaultResultOrder('ipv4first');
+
 const express = require('express');
 const cors = require('cors');
 const app = express();
 app.use(cors());
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 const mongoose = require('mongoose');
 const Project = require('./models/Project');
 
-mongoose.connect('mongodb://localhost:27017/dashboard')
+mongoose.connect(process.env.MONGO_URI)
     .then(function() {
-        console.log('Conectat la MongoDB!');
+        console.log('Conectat cu succes la MongoDB Atlas!');
     })
     .catch(function(err) {
-        console.error('Eroare conectare MongoDB:', err);
+        console.error('Eroare conectare MongoDB Atlas:', err);
     });
-
 app.use(express.json());
 
 /*const projects = [
