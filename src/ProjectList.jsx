@@ -9,6 +9,10 @@ function ProjectList() {
     const [title, setTitle] = useState('');
     const [tech, setTech] = useState('');
 
+    const [editingId, setEditingId] = useState(null);  
+    const [editTitle, setEditTitle] = useState('');     
+    const [editTech, setEditTech] = useState('');
+
     useEffect(function() {
         fetch('http://localhost:3000/api/projects')
             .then(function(response) {
@@ -86,6 +90,43 @@ async function handleDelete(id) {
         }
     }
 
+ // Editeaza
+function startEdit(project) {
+    setEditingId(project._id);
+    setEditTitle(project.title);
+    setEditTech(project.tech);
+}
+
+//  Anuleaza
+function cancelEdit() {
+    setEditingId(null);
+    setEditTitle('');
+    setEditTech('');
+}
+
+// Salveaza
+async function handleSaveEdit(id, currentDone) {
+    try {
+        const response = await fetch('http://localhost:3000/api/projects/' + id, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ title: editTitle, tech: editTech, done: currentDone })
+        });
+
+        if (!response.ok) {
+            throw new Error('Eroare la salvarea modificarilor');
+        }
+
+        const updatedProject = await response.json();
+    
+        setProjects(projects.map(p => p._id === id ? updatedProject : p));
+        cancelEdit();
+    } catch (err) {
+        console.error('Eroare la editare:', err);
+        alert('Nu s-au putut salva modificările.');
+    }
+}
+
     //afisare eroare
     if (error) {
         return <p style={{ color: 'red', fontWeight: 'bold' }}>{error}</p>;
@@ -132,6 +173,42 @@ async function handleDelete(id) {
         return p.title.toLowerCase().includes(searchTerm.toLowerCase());
     })
             .map(function(project) {
+                if (editingId === project._id) {
+            return (
+                <div key={project._id} style={{ border: '2px solid #0056b3', margin: '10px', padding: '10px', backgroundColor: '#f0f8ff' }}>
+                    <h4>Editează Proiectul</h4>
+                    <div style={{ marginBottom: '5px' }}>
+                        <label>Titlu: </label>
+                        <input 
+                            type="text" 
+                            value={editTitle} 
+                            onChange={(e) => setEditTitle(e.target.value)} 
+                        />
+                    </div>
+                    <div style={{ marginBottom: '10px' }}>
+                        <label>Tehnologii: </label>
+                        <input 
+                            type="text" 
+                            value={editTech} 
+                            onChange={(e) => setEditTech(e.target.value)} 
+                        />
+                    </div>
+                    
+                    <button 
+                        onClick={() => handleSaveEdit(project._id, project.done)}
+                        style={{ backgroundColor: '#28a745', color: 'white', border: 'none', padding: '5px 10px', marginRight: '5px', cursor: 'pointer', borderRadius: '4px' }}
+                    >
+                        Salvează
+                    </button>
+                    <button 
+                        onClick={cancelEdit}
+                        style={{ backgroundColor: '#6c757d', color: 'white', border: 'none', padding: '5px 10px', cursor: 'pointer', borderRadius: '4px' }}
+                    >
+                        Anulează
+                    </button>
+                </div>
+            );
+        }
                 return (
                     <div key={project._id} style={{ border: '1px solid #ccc', margin: '10px', padding: '10px' }}>
                         <h4>{project.title}</h4>
@@ -155,6 +232,23 @@ async function handleDelete(id) {
                                 >
                                     {project.done ? 'Marcheaza ca in lucru' : 'Marcheaza ca finalizat'}
                                 </button>
+
+                        {/*  Butonul de Editeaza   */}
+                        <button 
+                            onClick={() => startEdit(project)}
+                            style={{ 
+                                backgroundColor: '#17a2b8', 
+                                color: 'white', 
+                                border: 'none', 
+                                padding: '5px 10px', 
+                                cursor: 'pointer',
+                                borderRadius: '4px',
+                                marginTop: '5px',
+                                marginRight: '10px'
+                            }}
+                        >
+                            Editeaza
+                        </button>        
 
                         {/* Butonul de stergere */}
                 <button 
