@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import './ProjectList.css';
 
+const API = 'https://lab-pw-v4yx.onrender.com';
+
 function ProjectList() {
     const [projects, setProjects] = useState([]);
     const [loading, setLoading] = useState(true);
