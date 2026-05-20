@@ -52,7 +52,7 @@ app.get('/api/stats', (req, res) => {
 
 // Prima ruta: raspunde la GET /
 app.get('/', function(req, res) {
-  res.json({ message: 'Serverul funcționează!' });
+  res.json({ message: 'Serverul funcționeaza' });
 });
 
 // GET /api/projects - returnează toate proiectele
@@ -78,6 +78,21 @@ app.get('/api/projects/:id', async function(req, res) {
     }
 });
 
+//de la lab 11
+app.put('/api/projects/:id', async function(req, res) {
+    try {
+        const updated = await Project.findByIdAndUpdate(
+            req.params.id, 
+            req.body, 
+            { new: true }   // returneaza documentul DUPA actualizare 
+        );
+        
+        if (!updated) return res.status(404).json({ error: 'Not found' });
+        res.json(updated);
+    } catch (err) {
+        res.status(400).json({ error: err.message });
+    }
+});
 
 // POST /api/projects - adauga un proiect nou
 app.post('/api/projects', async function(req, res) {
@@ -101,7 +116,7 @@ app.delete('/api/projects/:id', async function(req, res) {
         const deletedProject = await Project.findByIdAndDelete(req.params.id);
 
         if (!deletedProject) {
-            return res.status(404).json({ error: 'Proiectul nu există' });
+            return res.status(404).json({ error: 'Proiectul nu exista' });
         }
 
         res.json({ message: 'Sters' });

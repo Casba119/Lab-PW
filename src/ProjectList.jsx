@@ -65,6 +65,27 @@ async function handleDelete(id) {
     }
 }
 
+    //lab11 ex1 async toggle
+    async function handleToggle(id, currentDone) {
+        try {
+            const response = await fetch('http://localhost:3000/api/projects/' + id, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ done: !currentDone }) // Inversăm statusul curent
+            });
+
+            if (!response.ok) {
+                throw new Error('Eroare la actualizarea statusului');
+            }
+
+            const updatedProject = await response.json();
+            // Înlocuim proiectul vechi cu cel nou în state
+            setProjects(projects.map(p => p._id === id ? updatedProject : p));
+        } catch (err) {
+            console.error('Eroare la toggle:', err);
+        }
+    }
+
     //afisare eroare
     if (error) {
         return <p style={{ color: 'red', fontWeight: 'bold' }}>{error}</p>;
@@ -116,6 +137,24 @@ async function handleDelete(id) {
                         <h4>{project.title}</h4>
                         <p>Tehnologii: {project.tech}</p>
                         <p>Status: {project.done ? "finalizat" : "nu inca"}</p>
+
+
+                        {/* Butonul de Toggle */}
+                                <button 
+                                    onClick={() => handleToggle(project._id, project.done)}
+                                    style={{ 
+                                        backgroundColor: project.done ? '#7cd17c' : '#e0a800', 
+                                        color: 'black', 
+                                        border: 'none', 
+                                        padding: '5px 10px', 
+                                        cursor: 'pointer',
+                                        borderRadius: '4px',
+                                        marginTop: '5px',
+                                        marginRight: '10px' 
+                                    }}
+                                >
+                                    {project.done ? 'Marcheaza ca in lucru' : 'Marcheaza ca finalizat'}
+                                </button>
 
                         {/* Butonul de stergere */}
                 <button 
