@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import loadingCat from '../images/catb.png';
 
+const API = 'https://lab-pw-v4yx.onrender.com';
+
 function Home() {
     const [stats, setStats] = useState({ total: 0, done: 0, inProgress: 0 });
     const [loading, setLoading] = useState(true);
@@ -8,7 +10,7 @@ function Home() {
 
     
     useEffect(function() {
-        fetch('http://localhost:3000/api/stats')
+        fetch(`${API}/api/stats`)
             .then(function(response) {
                 if (!response.ok) {
                     throw new Error('Eroare la incarcarea datelor');
