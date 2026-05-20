@@ -68,3 +68,158 @@ nav a.active {
     background: #FF7733; 
     font-weight: bold;
 }
+
+
+
+.app-global-container {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    max-width: 900px;       
+    margin: 0 auto;         
+    padding: 30px 20px;     
+    box-sizing: border-box;
+}
+
+ 
+.app-global-container nav, 
+.app-global-container .navbar-class-name-daca-ai { 
+    margin-bottom: 30px;
+}
+
+.stats-center-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+
+.modern-contact-form {
+    max-width: 450px;
+    margin: 30px auto 0 auto;
+    background-color: #1e1e1e;  
+    padding: 25px;
+    border-radius: 8px;
+    border: 1px solid #333;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    text-align: left;  
+}
+
+ 
+.form-group {
+    margin-bottom: 20px;  
+    display: flex;
+    flex-direction: column; 
+}
+
+ 
+.form-group label {
+    margin-bottom: 8px; 
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+ 
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 10px 12px;
+    background-color: #2a2a2a;
+    border: 1px solid #444;
+    border-radius: 5px;
+    color: #fff;
+    font-family: inherit;
+    font-size: 14px;
+    box-sizing: border-box;  
+    transition: border-color 0.2s ease;
+}
+
+ 
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #350044;  
+}
+
+ 
+.btn-submit {
+    width: 100%;
+    padding: 12px;
+    background-color: #a34a9e;  
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn-submit:hover {
+    background-color: #e65c17;  
+}
+
+ 
+.feedback-message {
+    margin-top: 15px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.feedback-message.error {
+    color: #ff4d4d;  
+}
+
+.feedback-message.success {
+    color: #4caf50;  
+}
+
+
+//imagine pisica
+.about-page {
+    text-align: center;
+    padding: 20px;
+}
+
+.about-cat-image {
+    max-width: 100%;    
+    height: auto;        
+    width: 550px;        
+    border-radius: 12px;  
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4); 
+    margin: 25px auto;   
+    display: block;      
+    transition: transform 0.3s ease;  
+}
+
+ 
+.about-cat-image:hover {
+    transform: scale(1.02);
+}
+
+ 
+.image-caption {
+    margin-top: 12px;
+    font-size: 16px;
+    color: #a0a0a0;      
+    font-style: italic;  
+}
+
+//pisica de pe home
+.stats-center-wrapper {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;  
+    justify-content: center !important;  
+    width: 100% !important;
+    margin-top: 20px !important;
+}
+
+ 
+.home-cat-icon {
+    width: 60px !important;           
+    height: auto !important;          
+    margin-bottom: 5px !important;   
+    display: block !important;
+    margin-left: auto !important;     
+    margin-right: auto !important;    
+}

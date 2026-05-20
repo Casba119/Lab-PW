@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import loadingCat from '../images/catb.png';
 
 function Home() {
     const [stats, setStats] = useState({ total: 0, done: 0, inProgress: 0 });
@@ -26,21 +27,31 @@ function Home() {
     }, []);
 
     return (
-        <div>
+        <div className="home-page">
             <h2>Home</h2>
             <p>Bine ai venit pe dashboard-ul meu!</p>
+            <img 
+                        src={loadingCat} 
+                        alt="Loading cat" 
+                        className="home-cat-icon" 
+                    />
 
-            {loading && <p>Se încarca statisticile live...</p>}
+
+            {loading && <p>Se incarca statisticile live...</p>}
             {error && <p style={{ color: 'red' }}>{error}</p>}
             {!loading && !error && (
+                <div className="stats-center-wrapper">
                 <div style={{ marginTop: '20px', border: '1px solid #ccc', padding: '15px', inlineSize: 'fit-content' }}>
                     <h4>Statistici proiecte:</h4>
                     <p>Total proiecte: <strong>{stats.total}</strong></p>
                     <p>Proiecte finalizate: <span style={{ color: 'green' }}><strong>{stats.done}</strong> ✅</span></p>
-                    <p>Proiecte in lucru: <span style={{ color: '#b78103' }}><strong>{stats.inProgress}</strong> ⏳</span></p>
+                    <p>Proiecte in lucru: <span style={{ color: '#f198ff' }}><strong>{stats.inProgress}</strong> ⏳</span></p>
                 </div>
+                </div>
+                
             )}
         </div>
+        
     );
 }
 

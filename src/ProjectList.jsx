@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import './ProjectList.css';
 
 function ProjectList() {
     const [projects, setProjects] = useState([]);
@@ -128,148 +129,129 @@ async function handleSaveEdit(id, currentDone) {
 
     //afisare eroare
     if (error) {
-        return <p style={{ color: 'red', fontWeight: 'bold' }}>{error}</p>;
+        return <p style={{ color: '#ff4d4d', fontWeight: 'bold', padding: '20px' }}>{error}</p>;
     }
 
     if (loading) {
-        return <p>Se incarca...</p>;
+        return <p style={{ padding: '20px', color: '#ccc' }}>Se incarca...</p>;
     }
 
     return (
-        <div>
-            <div>
-            <div style={{ marginBottom: '20px', border: '1px solid #666', padding: '10px' }}>
-                <h4>Adaugă proiect nou</h4>
-                <form onSubmit={handleSubmit}>
+        < div className="projects-container">
+            <div className="add-project-box">
+                <h4>Adauga proiect nou</h4>
+                <form onSubmit={handleSubmit} className="project-form">
                     <input 
                         type="text" 
                         placeholder="Titlu..." 
                         value={title} 
                         onChange={(e) => setTitle(e.target.value)} 
+                        className="project-input"
                     />
                     <input 
                         type="text" 
                         placeholder="Tehnologii..." 
                         value={tech} 
                         onChange={(e) => setTech(e.target.value)} 
+                        className="project-input"
                     />
-                    <button type="submit">Salvează</button>
+                    <button type="submit" className="btn btn-primary" style={{ marginTop: '0' }}>Salveaza</button>
                 </form>
             </div>
 
-            <hr />
-            <h3>Proiecte</h3>
-            {/* TODO: Afisati proiectele cu map() si componenta Card din Lab 4 */}
+            <hr style={{ border: '0', borderTop: '1px solid #333', marginBottom: '25px' }} />
+            <h3 style={{ color: '#fff' }}>Proiecte</h3>
+            
             <input 
                 type="text" 
                 placeholder="Cauta proiect..." 
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                style={{ marginBottom: '20px', padding: '5px' }}
+                className="project-input search-input"
             />
             {projects
-    .filter(function(p) {
-        return p.title.toLowerCase().includes(searchTerm.toLowerCase());
-    })
-            .map(function(project) {
-                if (editingId === project._id) {
-            return (
-                <div key={project._id} style={{ border: '2px solid #0056b3', margin: '10px', padding: '10px', backgroundColor: '#f0f8ff' }}>
-                    <h4>Editează Proiectul</h4>
-                    <div style={{ marginBottom: '5px' }}>
-                        <label>Titlu: </label>
-                        <input 
-                            type="text" 
-                            value={editTitle} 
-                            onChange={(e) => setEditTitle(e.target.value)} 
-                        />
-                    </div>
-                    <div style={{ marginBottom: '10px' }}>
-                        <label>Tehnologii: </label>
-                        <input 
-                            type="text" 
-                            value={editTech} 
-                            onChange={(e) => setEditTech(e.target.value)} 
-                        />
-                    </div>
-                    
-                    <button 
-                        onClick={() => handleSaveEdit(project._id, project.done)}
-                        style={{ backgroundColor: '#28a745', color: 'white', border: 'none', padding: '5px 10px', marginRight: '5px', cursor: 'pointer', borderRadius: '4px' }}
-                    >
-                        Salvează
-                    </button>
-                    <button 
-                        onClick={cancelEdit}
-                        style={{ backgroundColor: '#6c757d', color: 'white', border: 'none', padding: '5px 10px', cursor: 'pointer', borderRadius: '4px' }}
-                    >
-                        Anulează
-                    </button>
-                </div>
-            );
-        }
-                return (
-                    <div key={project._id} style={{ border: '1px solid #ccc', margin: '10px', padding: '10px' }}>
-                        <h4>{project.title}</h4>
-                        <p>Tehnologii: {project.tech}</p>
-                        <p>Status: {project.done ? "finalizat" : "nu inca"}</p>
-
-
-                        {/* Butonul de Toggle */}
+                .filter(function(p) {
+                    return p.title.toLowerCase().includes(searchTerm.toLowerCase());
+                })
+                .map(function(project) {
+                    if (editingId === project._id) {
+                        return (
+                            <div key={project._id} className="edit-project-box">
+                                <h4>Editeaza Proiectul</h4>
+                                <div className="edit-field">
+                                    <label>Titlu: </label>
+                                    <input 
+                                        type="text" 
+                                        value={editTitle} 
+                                        onChange={(e) => setEditTitle(e.target.value)} 
+                                        className="project-input"
+                                    />
+                                </div>
+                                <div className="edit-field">
+                                    <label>Tehnologii: </label>
+                                    <input 
+                                        type="text" 
+                                        value={editTech} 
+                                        onChange={(e) => setEditTech(e.target.value)} 
+                                        className="project-input"
+                                    />
+                                </div>
+                                
                                 <button 
-                                    onClick={() => handleToggle(project._id, project.done)}
-                                    style={{ 
-                                        backgroundColor: project.done ? '#7cd17c' : '#e0a800', 
-                                        color: 'black', 
-                                        border: 'none', 
-                                        padding: '5px 10px', 
-                                        cursor: 'pointer',
-                                        borderRadius: '4px',
-                                        marginTop: '5px',
-                                        marginRight: '10px' 
-                                    }}
+                                    onClick={() => handleSaveEdit(project._id, project.done)}
+                                    className="btn btn-success"
                                 >
-                                    {project.done ? 'Marcheaza ca in lucru' : 'Marcheaza ca finalizat'}
+                                    Salveaza
                                 </button>
-
-                        {/*  Butonul de Editeaza   */}
-                        <button 
-                            onClick={() => startEdit(project)}
-                            style={{ 
-                                backgroundColor: '#17a2b8', 
-                                color: 'white', 
-                                border: 'none', 
-                                padding: '5px 10px', 
-                                cursor: 'pointer',
-                                borderRadius: '4px',
-                                marginTop: '5px',
-                                marginRight: '10px'
-                            }}
+                                <button 
+                                    onClick={cancelEdit}
+                                    className="btn btn-secondary"
+                                >
+                                    Anuleaza
+                                </button>
+                            </div>
+                        );
+                    }
+                    return (
+                        <div 
+                            key={project._id} 
+                            className={`project-card ${project.done ? 'completed' : 'in-progress'}`}
                         >
-                            Editeaza
-                        </button>        
+                            <h4>{project.title}</h4>
+                            <p>Tehnologii: {project.tech}</p>
+                            <p className={`status-text ${project.done ? 'completed' : 'in-progress'}`}>
+                                Status: {project.done ? "finalizat" : "nu inca"}
+                            </p>
 
-                        {/* Butonul de stergere */}
-                <button 
-                    onClick={() => handleDelete(project._id)}
-                    style={{ 
-                        backgroundColor: '#ff4d4d', 
-                        color: 'white', 
-                        border: 'none', 
-                        padding: '5px 10px', 
-                        cursor: 'pointer',
-                        borderRadius: '4px',
-                        marginTop: '5px'
-                    }}
-                >
-                    Sterge
-                </button>
-                    </div>)
+                            {/* Butonul de Toggle */}
+                            <button 
+                                onClick={() => handleToggle(project._id, project.done)}
+                                className={`btn ${project.done ? 'btn-warning' : 'btn-success'}`}
+                            >
+                                {project.done ? 'Marcheaza ca in lucru' : 'Marcheaza ca finalizat'}
+                            </button>
+
+                            {/* Butonul de Editeaza   */}
+                            <button 
+                                onClick={() => startEdit(project)}
+                                className="btn btn-info"
+                            >
+                                Editeaza
+                            </button>        
+
+                            {/* Butonul de stergere */}
+                            <button 
+                                onClick={() => handleDelete(project._id)}
+                                className="btn btn-danger"
+                            >
+                                Sterge
+                            </button>
+                        </div>
+                    );
                 })}
         </div>
-        </div>
+        
     );
 }
-
 
 export default ProjectList;

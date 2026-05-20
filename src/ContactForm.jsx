@@ -18,8 +18,8 @@ function ContactForm() {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <div>
+      <form onSubmit={handleSubmit} className="modern-contact-form">
+        <div className="form-group">
           <label>Nume:</label>
           <input 
             type="text" 
@@ -27,7 +27,8 @@ function ContactForm() {
             onChange={(e) => setName(e.target.value)} 
           />
         </div>
-        <div>
+
+        <div className="form-group">
           <label>Email:</label>
           <input 
             type="email" 
@@ -35,14 +36,16 @@ function ContactForm() {
             onChange={(e) => setEmail(e.target.value)} 
           />
         </div>
-        <div>
+
+        <div className="form-group">
           <label>Mesaj:</label>
           <textarea 
             value={message} 
             onChange={(e) => setMessage(e.target.value)} 
           />
         </div>
-        <button type="submit">Submit</button>
+
+        <button type="submit" className="btn-submit">Submit</button>
       </form>
       
       {feedback && <p>{feedback}</p>}

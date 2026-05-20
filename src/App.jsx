@@ -6,6 +6,8 @@ import Navbar from './Navbar';
 import NotFound from './pages/NotFound';
 import About from './pages/About';
 
+import './App.css';
+
 function App() {
   return (
     <BrowserRouter>
